@@ -1,22 +1,88 @@
 //index.js
-var util = require('../../utils/util.js')
 
-//获取应用实例
+//imports
+var util = require('../../utils/util.js')
+var dict = require('dictionary.js')
+
+//variables
 var app = getApp()
 var language = ''
-var dictionaire = ['bonjour', 'hello', 'nihao', 'xin chao', 'guten tag']
-Page({
+var languages = ''
+var textPage = ''
 
+Page({
+  // ============================
+  // =========== data ===========
+  // ============================
   data: {
-    motto: 'Hello World',
+    array: {},
+    index: 0,
     userInfo: {},
     languageText: {},
-    textDependingOnLanguage: dictionaire[0],
-    buttonRefreshText: 'click to refresh',
+    helloText: {},
+    buttonRefreshText: 'change to french',
     buttonCalcText: {}
   },
 
-  //event listenner
+  // ============================
+  // ====== on load / init ======
+  // ============================
+  onLoad: function () {
+    console.log('onLoad')
+    console.log('setLanguage')
+    //get the system's language
+    wx.getSystemInfo({
+      success: function (res) { language = res.language }
+    })
+    console.log(language)
+
+    console.log('get userInformation')
+    var that = this
+    app.getUserInfo(function (userInfo) {
+      that.setData({ userInfo: userInfo })
+    })
+
+    console.log('get list of languages')
+    languages = dict.getLanguages()
+
+    console.log('set texts')//TODO create a function that will update all texts according to the system's language
+    textPage = dict.getJson(language)
+
+    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
+    wx.setNavigationBarTitle({
+      title: textPage.navigationBarTitleText,
+      success: function (res) { }
+    })
+
+    /*wx.makePhoneCall({
+      phoneNumber: '0247404080',
+      success: function(res) {console.log('phoning')}
+    })*/
+    /*wx.openLocation({
+      latitude: 47.3239117, // 纬度，范围为-90~90，负数表示南纬
+      longitude: 0.40593690000000004, // 经度，范围为-180~180，负数表示西经
+      scale: 28, // 缩放比例
+      name: 'Maison Valérian', // 位置名
+      address: '11 Rue Anne de Bretagne, 37130 Langeais, France', // 地址的详细说明
+      success: function(res) {console.log('getting the map')},
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })*/
+
+  },
+
+  //on ready
+  onReady: function () {
+    console.log('onReady')
+  },
+
+  // =============================
+  // ====== event listenner ======
+  // =============================
   bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
@@ -28,75 +94,36 @@ Page({
       url: '../calc/calc'
     })
   },
+  bindPickerChange: function(e) {
+    console.log('picker language', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
 
+    //updateText
+    language = dict.getEquivalence(languages[e.detail.value])
+    textPage = dict.getJson(language)
+    this.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText })
+    wx.setNavigationBarTitle({
+      title: textPage.navigationBarTitleText,
+      success: function (res) { }
+    })
+},
 
   updateText: function () {
     console.log('updateText')
-    this.setData({
-      buttonCalcText: 'ert'
-    })
-  },
-
-  //on load
-  onLoad: function () {
-    console.log('onLoad')
-
-   /* Page.updateText();
-    Page.updateText()
-    Page.updateText
-    Page.updatetext;
-
-    updateText();
-    updateText()
-    updateText
-    updateText;
-*/
-
+    language = "fr_FR"
+    textPage = dict.getJson(language)
     var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
+    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, index: 1 })
+    wx.setNavigationBarTitle({
+      title: textPage.navigationBarTitleText,
+      success: function (res) { }
     })
+  }
+
+})
+
+//---------------------------------------------------
 
 
-    //get the system's language
-    wx.getSystemInfo({
-      success: function(res) {language = res.language}
-    })
-    that.setData({languageText: language})
-    console.log(language)
-
-    if (language == 'zh_CN'){
-      that.setData({textDependingOnLanguage: dictionaire[2]})
-    }
-  },
-
-  //on ready
-  onReady: function(){
-    console.log('onReady')
-    this.setData({buttonCalcText: 'to calc'})
-
-
-/*
-    Page.updateText();
-    Page.updateText()
-    Page.updateText
-    Page.updatetext;
-
-    updateText();
-    updateText()
-    updateText
-    updateText;
-  */}
-
-})/*,
-
-function updateText() {
-    console.log('updateText')
-    this.setData({
-      buttonCalcText: 'ert'
-    })
-}*/
