@@ -4,11 +4,15 @@
 var util = require('../../utils/util.js')
 var dict = require('dictionary.js')
 
+//constants
+const DEFAULT_LANGUAGE = "en"
+
 //variables
 var app = getApp()
 var language = ''
 var languages = ''
 var textPage = ''
+
 
 Page({
   // ============================
@@ -30,7 +34,7 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     console.log('setLanguage')
-    //get the system's language
+    //TODO if not default language was set --> get the system's language
     wx.getSystemInfo({
       success: function (res) { language = res.language }
     })
@@ -45,14 +49,19 @@ Page({
     console.log('get list of languages')
     languages = dict.getLanguages()
 
-    console.log('set texts')//TODO create a function that will update all texts according to the system's language
+    console.log('set texts')//TODO create a function that will update all texts according to the selected language
     textPage = dict.getJson(language)
-
     that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
     })
+
+    wx.getSavedFileList({
+  success: function(res) {
+    console.log("fileList:", res.fileList)
+  }
+})
 
     /*wx.makePhoneCall({
       phoneNumber: '0247404080',
