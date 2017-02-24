@@ -1,8 +1,4 @@
 //app.js
-<<<<<<< HEAD
-=======
-//import i18next from 'i18next';
->>>>>>> master
 
 App({
   onLaunch: function () {
