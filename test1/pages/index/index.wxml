@@ -5,17 +5,29 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> master
   <view>
     <button bindtap="updateText">{{buttonRefreshText}}</button>
     <button bindtap="buttonCalc">{{buttonCalcText}}</button>
 
     <!--form action="where-you-want-to-go"><input type="submit"></form-->
   </view>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> master
   <view class="usermotto">
     <text class="user-motto">{{helloText}}</text>
   </view>
 
+<<<<<<< HEAD
   <!-- TODO mettre le picker dans un menu d'options -->
+=======
+<!-- TODO mettre le picker dans un menu d'options -->
+>>>>>>> master
   <view class="section">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker">
@@ -23,7 +35,11 @@
       </view>
     </picker>
   </view>
+<<<<<<< HEAD
  
   <contact-button type="default-light" size="20" session-from="weapp">test
   </contact-button>
+=======
+
+>>>>>>> master
 </view>

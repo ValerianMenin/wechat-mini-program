@@ -3,6 +3,7 @@
 //imports
 var util = require('../../utils/util.js')
 var dict = require('dictionary.js')
+<<<<<<< HEAD
 
 //constants
 const DEFAULT_LANGUAGE = "en"
@@ -13,6 +14,14 @@ var app = getApp()
 var languages = ''
 var textPage = ''
 
+=======
+
+//variables
+var app = getApp()
+var language = ''
+var languages = ''
+var textPage = ''
+>>>>>>> master
 
 Page({
   // ============================
@@ -34,11 +43,19 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     console.log('setLanguage')
+<<<<<<< HEAD
     //TODO if not default language was set --> get the system's language
     wx.getSystemInfo({
       success: function (res) { app.globalData.language = res.language }
     })
     console.log(app.globalData.language)
+=======
+    //get the system's language
+    wx.getSystemInfo({
+      success: function (res) { language = res.language }
+    })
+    console.log(language)
+>>>>>>> master
 
     console.log('get userInformation')
     var that = this
@@ -49,21 +66,31 @@ Page({
     console.log('get list of languages')
     languages = dict.getLanguages()
 
+<<<<<<< HEAD
     console.log('set texts')//TODO create a function that will update all texts according to the selected language
     textPage = dict.getJson(app.globalData.language)
     //console.log("textPage= ", textPage)
     that.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
+=======
+    console.log('set texts')//TODO create a function that will update all texts according to the system's language
+    textPage = dict.getJson(language)
+
+    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
+>>>>>>> master
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
     })
 
+<<<<<<< HEAD
     /*wx.getSavedFileList({
   success: function(res) {
     console.log("fileList:", res.fileList)
   }
 })*/
 
+=======
+>>>>>>> master
     /*wx.makePhoneCall({
       phoneNumber: '0247404080',
       success: function(res) {console.log('phoning')}
@@ -83,6 +110,7 @@ Page({
       }
     })*/
 
+<<<<<<< HEAD
     /*wx.request({
       url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json',
       //url: 'http://www.google.com',
@@ -101,6 +129,8 @@ Page({
         // complete
       }
     })*/
+=======
+>>>>>>> master
   },
 
   //on ready
@@ -129,9 +159,15 @@ Page({
     })
 
     //updateText
+<<<<<<< HEAD
     app.globalData.language = dict.getEquivalence(languages[e.detail.value])
     textPage = dict.getJson(app.globalData.language)
     this.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText })
+=======
+    language = dict.getEquivalence(languages[e.detail.value])
+    textPage = dict.getJson(language)
+    this.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText })
+>>>>>>> master
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
@@ -140,18 +176,34 @@ Page({
 
   updateText: function () {
     console.log('updateText')
+<<<<<<< HEAD
     app.globalData.language = "fr_FR"
     textPage = dict.getJson(app.globalData.language)
     var that = this
     that.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, index: 1 })
+=======
+    language = "fr_FR"
+    textPage = dict.getJson(language)
+    var that = this
+    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, index: 1 })
+>>>>>>> master
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
     })
   }
+<<<<<<< HEAD
 
 })
 
 //---------------------------------------------------
 
 
+=======
+
+})
+
+//---------------------------------------------------
+
+
+>>>>>>> master

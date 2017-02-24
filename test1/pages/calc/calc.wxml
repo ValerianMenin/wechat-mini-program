@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <view class="content">
   <view class="layout-top">
     <view class="screen">
@@ -73,3 +74,6 @@
 </view>
 <!-- PrefixFree -->
 <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+=======
+<text>this is a test</text>
+>>>>>>> master
