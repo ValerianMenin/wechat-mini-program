@@ -1,5 +1,4 @@
 //app.js
-//import i18next from 'i18next';
 
 App({
   onLaunch: function () {
@@ -27,6 +26,8 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    userInfo:null,
+
+    language: "en"
   }
 })

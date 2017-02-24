@@ -3,21 +3,15 @@
 var index = {
     zh_CN:{
         language:                   "中国",
-        navigationBarTitleText:     "我的应用程序",
-        helloText:                  "你好",
-        calcText:                   "计算器" 
+        navigationBarTitleText:     "计算器"
     }, 
     fr_FR:{
         language:                   "français",
-        navigationBarTitleText:     "index",
-        helloText:                  "bonjour",
-        calcText:                   "calculatrice"
+        navigationBarTitleText:     "calculatrice"
     },
     en:{        
         language:                   "english", 
-        navigationBarTitleText:     "index",
-        helloText:                  "hello",
-        calcText:                   "calculator"
+        navigationBarTitleText:     "calculator"
     }
 }
 
@@ -25,6 +19,9 @@ var index = {
 
 
 function getJson(language) {//TODO check if the language exists otherwise, return the default language
+    /*for(var key in index){
+        console.log(key)
+    }*/
     return index[language]//JSON.parse(indexJsonText)[language];
 }
 

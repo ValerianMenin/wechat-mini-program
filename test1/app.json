@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/calc/calc"
+    "pages/calc/calc",
+    "pages/calc/history/history"
   ],
   "window":{
     "backgroundTextStyle":"light",

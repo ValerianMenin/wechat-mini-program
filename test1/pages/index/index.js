@@ -9,7 +9,7 @@ const DEFAULT_LANGUAGE = "en"
 
 //variables
 var app = getApp()
-var language = ''
+//var language = ''
 var languages = ''
 var textPage = ''
 
@@ -36,9 +36,9 @@ Page({
     console.log('setLanguage')
     //TODO if not default language was set --> get the system's language
     wx.getSystemInfo({
-      success: function (res) { language = res.language }
+      success: function (res) { app.globalData.language = res.language }
     })
-    console.log(language)
+    console.log(app.globalData.language)
 
     console.log('get userInformation')
     var that = this
@@ -50,18 +50,19 @@ Page({
     languages = dict.getLanguages()
 
     console.log('set texts')//TODO create a function that will update all texts according to the selected language
-    textPage = dict.getJson(language)
-    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
+    textPage = dict.getJson(app.globalData.language)
+    //console.log("textPage= ", textPage)
+    that.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, array:languages })
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
     })
 
-    wx.getSavedFileList({
+    /*wx.getSavedFileList({
   success: function(res) {
     console.log("fileList:", res.fileList)
   }
-})
+})*/
 
     /*wx.makePhoneCall({
       phoneNumber: '0247404080',
@@ -82,6 +83,24 @@ Page({
       }
     })*/
 
+    /*wx.request({
+      url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json',
+      //url: 'http://www.google.com',
+      //url: 'http://localhost:3000/message',
+      data: {},
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+        console.log("data=", res.data)
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })*/
   },
 
   //on ready
@@ -110,9 +129,9 @@ Page({
     })
 
     //updateText
-    language = dict.getEquivalence(languages[e.detail.value])
-    textPage = dict.getJson(language)
-    this.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText })
+    app.globalData.language = dict.getEquivalence(languages[e.detail.value])
+    textPage = dict.getJson(app.globalData.language)
+    this.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText })
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
@@ -121,10 +140,10 @@ Page({
 
   updateText: function () {
     console.log('updateText')
-    language = "fr_FR"
-    textPage = dict.getJson(language)
+    app.globalData.language = "fr_FR"
+    textPage = dict.getJson(app.globalData.language)
     var that = this
-    that.setData({ languageText: language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, index: 1 })
+    that.setData({ languageText: app.globalData.language, helloText: textPage.helloText, buttonCalcText: textPage.calcText, index: 1 })
     wx.setNavigationBarTitle({
       title: textPage.navigationBarTitleText,
       success: function (res) { }
