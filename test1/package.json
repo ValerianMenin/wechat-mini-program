@@ -9,6 +9,7 @@
   "author": "valerian",
   "license": "ISC",
   "dependencies": {
+    "cleverbot.io": "^1.0.4",
     "i18next": "^7.0.1"
   },
   "devDependencies": {},

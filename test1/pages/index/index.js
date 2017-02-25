@@ -1,15 +1,28 @@
 //index.js
 
 //imports
-var util = require('../../utils/util.js')
 var dict = require('dictionary.js')
+
+
+
+//TODO fixe the require import problème
+//https://github.com/cleverbotio/cleverbot.io.js
+//https://docs.cleverbot.io/docs/getting-started-with-ruby
+//
+//var cleverbot = require('http://cdn.cleverbot.io/build/1.0/cleverbot.io.min.js')
+//var cleverbot = require('cleverbot.io')
+//var cleverbot = require("cleverbot.io")
+var cleverbotIO = require('../../utils/cleverbot.io.min')
+var bot = new cleverbotIO('kKqXUeJZVvehMCDs','i1ErtA0g4ZuiKCEG4pUSlnEo648D42dm');// la clé vient de https://cleverbot.io/keys et elle est correcte
+
+
+
 
 //constants
 const DEFAULT_LANGUAGE = "en"
 
 //variables
 var app = getApp()
-//var language = ''
 var languages = ''
 var textPage = ''
 
@@ -83,10 +96,13 @@ Page({
     })*/
 
     /*wx.request({
-      url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json',
+      //url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json',
       //url: 'http://www.google.com',
       //url: 'http://localhost:3000/message',
-      data: {},
+      url: 'http://localhost:3000/person',
+      data: {
+        //person: ''
+      },
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function(res){
@@ -95,11 +111,75 @@ Page({
       },
       fail: function() {
         // fail
+        console.log("fail to access", url)
+      },
+      complete: function() {
+        // complete
+      }
+    }),
+
+    wx.request({
+      url: 'http://localhost:3000/person',
+      data: {
+        //person: ''
+        'name': 'name'
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(){
+        // success
+        console.log("success - POST")
+      },
+      fail: function() {
+        // fail
+        console.log("fail - POST")
+      },
+      complete: function() {
+        // complete
+      }
+    })
+
+    wx.request({
+      url: 'http://localhost:3000/person',
+      data: {
+        //person: ''
+      },
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        // success
+        console.log("data=", res.data)
+      },
+      fail: function() {
+        // fail
+        console.log("fail to access", url)
       },
       complete: function() {
         // complete
       }
     })*/
+
+
+
+
+    var sessionname = "wechat"
+    var err = ""
+    bot.setNick(sessionname)
+    bot.create(function (err, sessionname) {
+      // session is your session name, it will either be as you set it previously, or cleverbot.io will generate one for you
+
+      // Woo, you initialized cleverbot.io.  Insert further code here
+    });
+    var question = "hi"
+    var response = ""
+    bot.ask(question, function (err, response) {
+      console.log("question", question)
+      console.log("response", response); // Will likely be: "Living in a lonely world"
+    });
+
+
+
+
   },
 
   //on ready

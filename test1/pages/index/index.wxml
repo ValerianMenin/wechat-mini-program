@@ -26,6 +26,17 @@
     </picker>
   </view>
  
-  <contact-button type="default-light" size="20" session-from="weapp">test
-  </contact-button>
+  <!--contact-button type="default-light" size="40" session-from="weapp"></contact-button-->
+  <view class="page-body">
+    <view class="page-body-wrapper">
+      <text class="page-body-title">
+        点击气泡icon打开客服消息界面
+      </text>
+      <view class="page-body-line">
+        <contact-button size="40" session-from="weapp"></contact-button>
+      </view>
+    </view>
+  </view>
 </view>
+
+<!--script src="//cdn.cleverbot.io/build/1.0/cleverbot.io.min.js"></script-->
