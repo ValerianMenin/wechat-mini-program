@@ -74,12 +74,12 @@ Page({
         this.data.arr.unshift("－");
       }
       this.setData({ "screenData": data });
-    } else if (id == this.data.ide) {  //等于＝
+    } else if (id == this.data.ide) { 
       var data = this.data.screenData;
       if (data == "0") {
         return;
       }
-      //eval是js中window的一个方法，而微信页面的脚本逻辑在是在JsCore中运行，JsCore是一个没有窗口对象的环境，所以不能再脚本中使用window，也无法在脚本中操作组件                 
+
       //var result = eval(newData);           
 
       var lastWord = data.charAt(data.length);
@@ -118,7 +118,7 @@ Page({
           }
         }
       }
-      //存储历史记录
+
       this.data.logs.push(data + result);
       wx.setStorageSync("calclogs", this.data.logs);
 
@@ -127,7 +127,7 @@ Page({
 
       this.setData({ "screenData": result + "" });
     } else {
-      if (this.data.operaSymbo[id]) { //如果是符号+-*/
+      if (this.data.operaSymbo[id]) { //+-*/
         if (this.data.lastIsOperaSymbo || this.data.screenData == "0") {
           return;
         }

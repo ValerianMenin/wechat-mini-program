@@ -12,8 +12,8 @@ var dict = require('dictionary.js')
 //var cleverbot = require('http://cdn.cleverbot.io/build/1.0/cleverbot.io.min.js')
 //var cleverbot = require('cleverbot.io')
 //var cleverbot = require("cleverbot.io")
-var cleverbotIO = require('../../utils/cleverbot.io.min')
-var bot = new cleverbotIO('kKqXUeJZVvehMCDs','i1ErtA0g4ZuiKCEG4pUSlnEo648D42dm');// la clé vient de https://cleverbot.io/keys et elle est correcte
+//var cleverbotIO = require('../../utils/cleverbot.io.min')
+//var bot = new cleverbotIO('kKqXUeJZVvehMCDs','i1ErtA0g4ZuiKCEG4pUSlnEo648D42dm');// la clé vient de https://cleverbot.io/keys et elle est correcte
 
 
 
@@ -162,7 +162,7 @@ Page({
 
 
 
-    var sessionname = "wechat"
+   /* var sessionname = "wechat"
     var err = ""
     bot.setNick(sessionname)
     bot.create(function (err, sessionname) {
@@ -175,10 +175,36 @@ Page({
     bot.ask(question, function (err, response) {
       console.log("question", question)
       console.log("response", response); // Will likely be: "Living in a lonely world"
-    });
+    });*/
 
+    
+    
+    /*wx.request({
+      url: 'http://cleverbot.io/1.0/create',
+      //url: 'http://cleverbot.io/1.0/ask',
+      data: {
+        //"user": "kKqXUeJZVvehMCDs",
+        //"key": "i1ErtA0g4ZuiKCEG4pUSlnEo648D42dm",
+        //"nick": "wechat"
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      //header: {" content-type: application/x-www-form-urlencoded accept-encoding: gzip, deflate content-length: 70"}, // 设置请求的 header
+      //header: {'content-type': 'application/x-www-form-urlencoded', 'content-length': 70},
 
+      success: function(res){
+        // success
+        console.log("data=", res.data)
+      },
+      fail: function() {
+        // fail
+        console.log("fail to access", url)
+      },
+      complete: function() {
+        // complete
+      }
+    })*/
 
+ /*   wx.chooseWXPay({ timestamp: 0, // Pay the signature time stamp noncestr: ', package:' signature // pay a random string, // order details extended strings, see Appendix 5 of paySign: ', // payment signature, see Appendix 5 }); */
 
   },
 

@@ -9,7 +9,6 @@
     <view class="btnGroup">
       <view class="item orange" bindtap="clickBtn" id="{{idc}}">С</view>
       <view class="item orange" bindtap="clickBtn" id="{{idb}}">←</view>
-      <!--<view class="item orange" bindtap="clickBtn" id="{{idt}}">＋/－</view>-->
       <view class="item orange iconBtn" bindtap="history">
           <icon type="{{iconType}}" color="{{iconColor}}" class="icon" size="25"/>
       </view>
@@ -41,7 +40,7 @@
   </view>
 </view>
 
-<!-- just another calculator-->
+<!-- calculator-->
 <view class="container">
     <div id="calculator">
         <!-- Screen and clear key -->
